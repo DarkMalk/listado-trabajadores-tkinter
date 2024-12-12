@@ -1,33 +1,38 @@
 # Como instalar proyecto
 
-### Requisitos:
-1. Python v3.12
-2. Tkinter
+### Versiones utilizadas:
+1. Python: v3.12 o superior
+2. Tkinter: Viene incluido para Windows. En linux/macos, se instala con:
+```bash
+sudo apt-get install python3-tk # Linux (debian o ubuntu)
+brew install python-tk@3.12 # MacOS
+```
+3. MySQL: Recomendado v9.1.0
+4. Git: Necesario para clonar el repositorio.
 
 **NOTA:** Tkinter en Windows viene incluido al instalar Python, para MacOS y Linux debes instalar tkinter por separado
 
 # Como inicializar proyecto
 
 ### Clonar repositorio de código
-```
+```bash
 git clone https://github.com/DarkMalk/listado-trabajadores-tkinter.git
 ```
 
 ### Ubicarse en el repositorio clonado
-```
+```bash
 cd listado-trabajadores-tkinter/
 ```
 
 ### Inicializar entorno virtual
-```
+```bash
 python3.12 -m venv myenv/
-
 source myenv/bin/activate
 ```
 
 ### Instalar dependencias del proyecto
-```
-pip install -r requerements.txt
+```bash
+pip install -r requirements.txt
 ```
 
 ### Configurar base de datos
@@ -37,7 +42,7 @@ en el proyecto se incluye una carpeta llamada `files_utils/` la cual incluye un 
 
 **NOTA:** al final se encuentra una inserción correspondiente al usuario por defecto el cual su usuario es `admin` y la contraseña `admin`.
 
-```
+```sql
 CREATE DATABASE `listado_trabajadores`;
 
 USE `listado_trabajadores`;
@@ -163,7 +168,7 @@ VALUES ("admin", "admin@example.com", "$2b$10$KkkiQSlM6G99P/qov2Hv/eX/zECOYL3Fnv
 
 También debes configurar en la raíz del proyecto un archivo `.env` el cual debe contener los datos de la base de datos que te vas a conectar, te puedes guiar con el archivo de referencia llamado `.env-example`.
 
-```
+```bash
 DB_HOST="localhost"
 DB_USER="root"
 DB_PASSWORD=""
@@ -173,6 +178,6 @@ DB_NAME="listado_trabajadores"
 ### Iniciar aplicación
 Para iniciar la app debes utilizar el archivo `main.py` el cual es el punto de entrada de la aplicación.
 
-```
+```bash
 python main.py
 ```
