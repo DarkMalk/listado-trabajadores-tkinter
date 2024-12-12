@@ -126,44 +126,82 @@ CREATE TABLE `family_responsibilities` (
   FOREIGN KEY (id_user) REFERENCES user (id) ON DELETE CASCADE
 );
 
-ALTER TABLE `user` ADD FOREIGN KEY (`role`) REFERENCES `role` (`id`);
+ALTER TABLE `user`
+ADD FOREIGN KEY (`role`)
+REFERENCES `role` (`id`);
 
-ALTER TABLE `user_info` ADD FOREIGN KEY (`gender`) REFERENCES `gender` (`id`);
+ALTER TABLE `user_info`
+ADD FOREIGN KEY (`gender`)
+REFERENCES `gender` (`id`);
 
-ALTER TABLE `user_info_work` ADD FOREIGN KEY (`department`) REFERENCES `department` (`id`);
+ALTER TABLE `user_info_work`
+ADD FOREIGN KEY (`department`)
+REFERENCES `department` (`id`);
 
-ALTER TABLE `user_info_work` ADD FOREIGN KEY (`area`) REFERENCES `area` (`id`);
+ALTER TABLE `user_info_work`
+ADD FOREIGN KEY (`area`)
+REFERENCES `area` (`id`);
 
-ALTER TABLE `user_info_work` ADD FOREIGN KEY (`job_title`) REFERENCES `job_title` (`id`);
+ALTER TABLE `user_info_work`
+ADD FOREIGN KEY (`job_title`)
+REFERENCES `job_title` (`id`);
 
-ALTER TABLE `user_emergency_contact` ADD FOREIGN KEY (`relationship`) REFERENCES `relationship` (`id`);
+ALTER TABLE `user_emergency_contact`
+ADD FOREIGN KEY (`relationship`)
+REFERENCES `relationship` (`id`);
 
-ALTER TABLE `family_responsibilities` ADD FOREIGN KEY (`relationship`) REFERENCES `relationship` (`id`);
+ALTER TABLE `family_responsibilities`
+ADD FOREIGN KEY (`relationship`)
+REFERENCES `relationship` (`id`);
 
-ALTER TABLE `family_responsibilities` ADD FOREIGN KEY (`gender`) REFERENCES `gender` (`id`);
+ALTER TABLE `family_responsibilities`
+ADD FOREIGN KEY (`gender`)
+REFERENCES `gender` (`id`);
 
 -- Añadiendo datos de iniciales
 INSERT INTO `gender` (name)
 VALUES ("Male"), ("Famele");
 
 INSERT INTO `relationship` (name)
-VALUES ("Father"), ("Mother"), ("Son / Daughter"), ("Husband / Wife"), ("Brother / Sister"), ("Friend"), ("Other");
+VALUES ("Father"),
+("Mother"),
+("Son / Daughter"),
+("Husband / Wife"),
+("Brother / Sister"), ("Friend"),
+("Other");
 
 INSERT INTO `role` (name)
-VALUES ("admin"), ("HR Manager"), ("HR Staff"), ("Employee");
+VALUES ("admin"),
+("HR Manager"),
+("HR Staff"),
+("Employee");
 
 INSERT INTO `job_title` (name)
-VALUES ("Software Develoepr"), ("Warehouse Assistant"), ("Sales Executive"), ("Marketing Specialist");
+VALUES ("Software Develoepr"),
+("Warehouse Assistant"),
+("Sales Executive"),
+("Marketing Specialist");
 
 INSERT INTO `area` (name)
-VALUES ("Information Technology (IT)"), ("Logistics / Warehouse"), ("Sales"), ("Marketing");
+VALUES ("Information Technology (IT)"),
+("Logistics / Warehouse"),
+("Sales"),
+("Marketing");
 
 INSERT INTO `department` (name)
-VALUES ("IT Department"), ("Operations Department"), ("Customer Support Department"), ("Marketing Department");
+VALUES ("IT Department"),
+("Operations Department"),
+("Customer Support Department"),
+("Marketing Department");
 
 -- Usuario admin por defecto user: admin, pass: admin
 INSERT INTO user (username, email, password, role) 
-VALUES ("admin", "admin@example.com", "$2b$10$KkkiQSlM6G99P/qov2Hv/eX/zECOYL3FnvHTWnmcpO18b9VJyNprO", (select id from role where name = "admin"));
+VALUES (
+  "admin",
+  "admin@example.com",
+  "$2b$10$KkkiQSlM6G99P/qov2Hv/eX/zECOYL3FnvHTWnmcpO18b9VJyNprO",
+  (select id from role where name = "admin")
+);
 ```
 
 También debes configurar en la raíz del proyecto un archivo `.env` el cual debe contener los datos de la base de datos que te vas a conectar, te puedes guiar con el archivo de referencia llamado `.env-example`.
